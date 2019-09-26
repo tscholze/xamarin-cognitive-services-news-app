@@ -28,12 +28,26 @@ namespace Invia.News.Views
         {
             InitializeComponent();
 
+            // Setup binding context.
             BindingContext = this.viewModel = viewModel;
+
+            // Setup messaging center.
+            MessagingCenter.Subscribe<ArticlesViewModel, string>(this, ArticlesViewModel.NOTIFICATION_ALERT_REQUESTED, OnAlertRequested);
         }
 
         #endregion
 
         #region Event handler
+
+        /// <summary>
+        /// Raised if an alert has been requested.
+        /// </summary>
+        /// <param name="sender">Requesting view model.</param>
+        /// <param name="message">Message to show.</param>
+        void OnAlertRequested(ArticlesViewModel sender, String message)
+        {
+            DisplayAlert("Information", message, "OK");
+        }
 
         async void OnItemSelected(object sender, SelectedItemChangedEventArgs args)
         {
@@ -56,7 +70,6 @@ namespace Invia.News.Views
         #endregion
 
         #region Life cycle
-
         protected override void OnAppearing()
         {
             base.OnAppearing();

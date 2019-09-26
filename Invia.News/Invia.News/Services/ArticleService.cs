@@ -29,7 +29,7 @@ namespace Invia.News.Services
         /// <summary>
         /// Azure text analytics endpoint.
         /// </summary>
-        private static readonly string ANALYTICS_ENDPOINT = "/";
+        private static readonly string ANALYTICS_ENDPOINT = "";
 
         /// <summary>
         /// Article feed endpoint.
@@ -178,6 +178,7 @@ namespace Invia.News.Services
             // Get sentiment analytics from Azure.
             var result = await client.SentimentBatchAsync(batchInput);
             
+            // If any error occures, return the non enriched article list.
             if(result.Errors.Count > 0)
             {
                 Console.WriteLine("Error occured");

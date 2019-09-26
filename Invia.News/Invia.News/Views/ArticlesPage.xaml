@@ -20,10 +20,13 @@
             x:Name="ArticlesListView"
             ItemSelected="OnItemSelected"
             ItemsSource="{Binding Articles}"
+            RefreshCommand="{Binding RefreshCommand}"
+            IsRefreshing="{Binding IsRefreshing}"
             SeparatorVisibility="Default"
             SeparatorColor="DarkOrange"
             HasUnevenRows="true"
             SelectionMode="None"
+            IsPullToRefreshEnabled="True"
             ios:ListView.SeparatorStyle="FullWidth">
         <ListView.ItemTemplate>
             <DataTemplate>

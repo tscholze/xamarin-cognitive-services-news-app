@@ -9,7 +9,32 @@ namespace Invia.News.ViewModels
 {
     public class ArticlesViewModel : BaseViewModel
     {
+        #region Public constants 
+
+        /// <summary>
+        /// Notification identifier if the viewmodel requests an alert.
+        /// </summary>
+        public static readonly string NOTIFICATION_ALERT_REQUESTED = "notification-alert-requested";
+
+        #endregion
+
         #region Public member
+
+        /// <summary>
+        /// Determines if page is refreshing.
+        /// </summary>
+        public bool IsRefreshing
+        {
+            set
+            {
+                isRefreshing = value;
+                OnPropertyChanged();
+            }
+            get
+            {
+                return isRefreshing;
+            }
+        }
 
         /// <summary>
         /// Title of the page.
@@ -66,6 +91,8 @@ namespace Invia.News.ViewModels
         /// <value>The load feed command.</value>
         public ICommand LoadArticlesCommand { get; private set; }
 
+        public ICommand RefreshArticlesCommand { get; private set; }
+
         #endregion
 
         #region Private members
@@ -79,6 +106,11 @@ namespace Invia.News.ViewModels
         /// Backing field for underlying articles.
         /// </summary>
         private List<Article> articles = new List<Article>();
+
+        /// <summary>
+        /// Backing field for IsRefreshing.
+        /// </summary>
+        private bool isRefreshing = false;
 
         /// <summary>
         /// Determines if happy or sad articles will be shown.
@@ -99,9 +131,11 @@ namespace Invia.News.ViewModels
             // Setup members
             this.showHappy = showHappy;
             Title = showHappy ? "Happy News" : "Sad News";
+            IsRefreshing = false;
 
             // Setup commands
-            LoadArticlesCommand = new Command(async () => await LoadArticlesAsync());
+            LoadArticlesCommand = new Command(async () => await LoadArticlesAsync(false));
+            RefreshArticlesCommand = new Command(async () => await LoadArticlesAsync(true));
         }
 
         #endregion
@@ -111,18 +145,25 @@ namespace Invia.News.ViewModels
         /// <summary>
         /// Loads atricles async from the webserver.
         /// </summary>
-        async Task LoadArticlesAsync()
+        async Task LoadArticlesAsync(bool forceReload)
         {
+            // Set states.
+            IsRefreshing = true;
+
             // Update articles for page.
             Articles = showHappy 
-                ? await ArticleService.Instance.GetHappyArticlesAsync() 
-                : await ArticleService.Instance.GetSadArticlesAsync();
+                ? await ArticleService.Instance.GetHappyArticlesAsync(forceReload) 
+                : await ArticleService.Instance.GetSadArticlesAsync(forceReload);
 
-            // If no articles found, present an alert.
-            if(HasArticles == false)
+            // Update states
+            IsRefreshing = false;
+
+            // If no articles found, request an alert.
+            if (HasArticles == false)
             {
                 var mode = showHappy ? "happy" : "sad";
-                await Application.Current.MainPage.DisplayAlert("No articles found", $"There are currently no {mode} articles.", "OK");
+                var message = $"There are currently no {mode} articles.";
+                MessagingCenter.Send(this, NOTIFICATION_ALERT_REQUESTED, message);
             }
         }
 

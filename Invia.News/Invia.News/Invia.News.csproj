@@ -14,10 +14,6 @@
     <PackageReference Include="Xamarin.Essentials" Version="1.3.1" />
     <PackageReference Include="Microsoft.Azure.CognitiveServices.Language.TextAnalytics" Version="4.0.0" />
   </ItemGroup>
-
-  <ItemGroup>
-    <Compile Remove="Uitls\Constants.cs" />
-  </ItemGroup>
   <ItemGroup>
     <Compile Update="Views\ArticlesPage.xaml.cs">
       <DependentUpon>ArticlesPage.xaml</DependentUpon>
