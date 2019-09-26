@@ -12,8 +12,12 @@
   <ItemGroup>
     <PackageReference Include="Xamarin.Forms" Version="4.1.0.555618" />  
     <PackageReference Include="Xamarin.Essentials" Version="1.1.0" />
+    <PackageReference Include="Microsoft.Azure.CognitiveServices.Language.TextAnalytics" Version="4.0.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Compile Remove="Uitls\Constants.cs" />
+  </ItemGroup>
   <ItemGroup>
     <Compile Update="Views\ArticlesPage.xaml.cs">
       <DependentUpon>ArticlesPage.xaml</DependentUpon>
@@ -27,5 +31,8 @@
     <EmbeddedResource Update="Views\ArticlePage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Uitls\Converters\" />
   </ItemGroup>
 </Project>

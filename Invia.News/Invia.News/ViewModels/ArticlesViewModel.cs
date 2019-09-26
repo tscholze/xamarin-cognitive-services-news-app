@@ -11,7 +11,11 @@ namespace Invia.News.ViewModels
 {
     class ArticlesViewModel: BaseViewModel
     {
-        private List<Article> articles = new List<Article>();
+        #region Public member
+
+        /// <summary>
+        /// List of all atricles.
+        /// </summary>
         public List<Article> Articles
         {
             set
@@ -26,6 +30,9 @@ namespace Invia.News.ViewModels
             }
         }
 
+        /// <summary>
+        /// Determines if articles are already present.
+        /// </summary>
         public bool HasArticles
         {
             get
@@ -34,26 +41,47 @@ namespace Invia.News.ViewModels
             }
         }
 
+        #endregion
+
+        #region Commands
+
         /// <summary>
         /// Gets the load feed command.
         /// </summary>
         /// <value>The load feed command.</value>
         public ICommand LoadArticlesCommand { get; private set; }
 
+        #endregion
+
+        #region Private members
+
+        private List<Article> articles = new List<Article>();
+
+        #endregion
+
         #region Init
 
+        /// <summary>
+        /// Initializer.
+        ///
+        /// It will setup the view model.
+        /// </summary>
         public ArticlesViewModel()
         {
             // Setup commands
-            LoadArticlesCommand = new Command(LoadArticlesAsync);
+            LoadArticlesCommand = new Command(async () => await LoadArticlesAsync());
         }
 
         #endregion
 
         #region Private helper
-        void LoadArticlesAsync()
+
+        /// <summary>
+        /// Loads atricles async from the webserver.
+        /// </summary>
+        async void LoadArticlesAsync()
         {
-            articles = ArticleService.GetArticles(Constants.FEED_URL);
+            Articles = await ArticleService.GetArticlesAsync();
         }
 
         #endregion

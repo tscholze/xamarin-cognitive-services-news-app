@@ -15,7 +15,6 @@
     <AndroidManifest>Properties\AndroidManifest.xml</AndroidManifest>
     <MonoAndroidResourcePrefix>Resources</MonoAndroidResourcePrefix>
     <MonoAndroidAssetsPrefix>Assets</MonoAndroidAssetsPrefix>
-    <AndroidUseLatestPlatformSdk>false</AndroidUseLatestPlatformSdk>
     <TargetFrameworkVersion>v9.0</TargetFrameworkVersion>
     <AndroidEnableSGenConcurrent>true</AndroidEnableSGenConcurrent>
     <AndroidUseAapt2>true</AndroidUseAapt2>
@@ -103,7 +102,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Invia.News\Invia.News.csproj">
-      <Project>{6AFBD8D0-760E-4CCF-AFAD-BAF84EE8C76F}</Project>
+      <Project>{5B01B79E-9B0C-4C8B-91CB-8A649E81B668}</Project>
       <Name>Invia.News</Name>
     </ProjectReference>
   </ItemGroup>

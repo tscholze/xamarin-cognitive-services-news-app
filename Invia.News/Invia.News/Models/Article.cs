@@ -1,9 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Invia.News.Models
 {
+    /// <summary>
+    /// Model of an Deutsche Welle article.
+    /// </summary>
     public class Article
     {
         /// <summary>
@@ -11,6 +12,11 @@ namespace Invia.News.Models
         /// </summary>
         /// <value>The GUID.</value>
         public string Guid { get; set; }
+
+        /// <summary>
+        /// Language code.
+        /// </summary>
+        public string LanguageCode { get; set; }
 
         /// <summary>
         /// Gets or sets the title.
@@ -35,5 +41,10 @@ namespace Invia.News.Models
         /// </summary>
         /// <value>The publish date.</value>
         public DateTime PublishDate { get; set; }
+
+        /// <summary>
+        /// Gets the happeyness score in percent of 1.
+        /// </summary>
+        public double SentimentScore { get; set; }
     }
 }

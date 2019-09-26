@@ -3,26 +3,45 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
              mc:Ignorable="d"
              x:Class="Invia.News.Views.ItemsPage"
              Title="{Binding Title}">
 
+    <!-- About icon -->
     <ContentPage.ToolbarItems>
-        <ToolbarItem Text="About" Clicked="AddItem_Clicked" />
+        <ToolbarItem
+            IconImageSource="tab_about.png"
+            Clicked="AddItem_Clicked" />
     </ContentPage.ToolbarItems>
 
+    <!-- List View of all atricles -->
     <ListView
             x:Name="ArticlesListView"
             ItemSelected="OnItemSelected"
             ItemsSource="{Binding Articles}"
             SeparatorVisibility="Default"
+            SeparatorColor="DarkOrange"
             HasUnevenRows="true"
-            BackgroundColor="#F2F2F2"
-            SelectionMode="None">
+            SelectionMode="None"
+            ios:ListView.SeparatorStyle="FullWidth">
         <ListView.ItemTemplate>
         <DataTemplate>
             <ViewCell>
-                <Label Text="{Binding Title}" />
+                <StackLayout Padding="20, 10, 20, 10">
+                    <!-- Title text -->
+                    <Label Text="{Binding Title}" Margin="0, 0, 0, 2" FontSize="16" TextColor="#333" />
+
+                    <!-- Happyness container -->
+                    <StackLayout Orientation="Horizontal">
+                        <Label Text="{Binding HappynessScore, Converter={StaticResource scoreToEmoji}}"
+                               FontSize="12"
+                               Margin="0, 0, 1, 0" />
+                        <Label Text="{Binding HappynessScore, StringFormat='Happyness Score: {0:P0}'}"
+                               FontSize="12"
+                               TextColor="Orange"/>
+                        </StackLayout> 
+                </StackLayout>
             </ViewCell>
         </DataTemplate>
         </ListView.ItemTemplate>
