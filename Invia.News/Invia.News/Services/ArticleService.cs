@@ -16,27 +16,30 @@ namespace Invia.News.Services
     /// Atricle service to provide with sentiment score enriched
     /// items from DeutscheWelle feed.
     ///
-    /// https://docs.microsoft.com/de-de/xamarin/xamarin-forms/app-fundamentals/dependency-service/registration-and-resolution
     /// </summary>
-    class ArticleService
+    sealed class ArticleService
     {
         #region Constants
 
         /// <summary>
         /// Azure text analystics subscription key.
-        /// 
         /// </summary>
         private static readonly string ANALYTICS_SUBSCRIPTION_KEY = "";
 
         /// <summary>
         /// Azure text analytics endpoint.
         /// </summary>
-        private static readonly string ANALYTICS_ENDPOINT = "";
+        private static readonly string ANALYTICS_ENDPOINT = "/";
 
         /// <summary>
         /// Article feed endpoint.
         /// </summary>
         private readonly static string FEED_ENDPOINT = "https://rss.dw.com/rdf/rss-en-top";
+
+        /// <summary>
+        /// Threshold that indicates a happy article.
+        /// </summary>
+        private readonly static double HAPPY_SCORE_THRESHOLD = 0.75;
 
         #endregion
 
@@ -49,17 +52,56 @@ namespace Invia.News.Services
 
         #endregion
 
+        #region Public member
+
+        public static ArticleService Instance { get; } = new ArticleService();
+
+        #endregion
+
+        #region Init
+
+        private ArticleService()
+        {
+            // place for instance initialization code
+        }
+
+        #endregion
+
         #region Public helper
+
+        /// <summary>
+        /// Gets all articles with a happy sentiment score.
+        /// </summary>
+        /// <param name="forceReload">If true, cache wil be ignored.</param>
+        /// <returns>List of happy articles.</returns>
+        public async Task<List<Article>> GetHappyArticlesAsync(bool forceReload = false)
+        {
+            return (await GetArticlesAsync(forceReload)).Where(a => a.SentimentScore > HAPPY_SCORE_THRESHOLD).ToList();
+        }
+
+        /// <summary>
+        /// Gets all articles with a sad sentiment score.
+        /// </summary>
+        /// <param name="forceReload">If true, cache wil be ignored.</param>
+        /// <returns>List of sad articles.</returns>
+        public async Task<List<Article>> GetSadArticlesAsync(bool forceReload = false)
+        {
+            return (await GetArticlesAsync(forceReload)).Where(a => a.SentimentScore <= HAPPY_SCORE_THRESHOLD).ToList();
+        }
+
+        #endregion
+
+        #region Private helper
 
         /// <summary>
         /// Gets the url's feed posts.
         /// </summary>
         /// <param name="forceReload">If true, the cache will not be used.</param>
         /// <returns>The feed's posts.</returns>
-        public async Task<List<Article>> GetArticlesAsync(bool forceReload = false)
+        private async Task<List<Article>> GetArticlesAsync(bool forceReload = false)
         {
             // Use cached articles if possible.
-            if(cachedArticles.Count != 0 && !forceReload)
+            if (cachedArticles.Count != 0 && !forceReload)
             {
                 return cachedArticles;
             }
@@ -82,7 +124,7 @@ namespace Invia.News.Services
 
             // Parse list of posts.
             var items = doc.Element(rdf + "RDF").Elements(purl + "item");
-            var articles = items.Select(item => new Article 
+            var articles = items.Select(item => new Article
             {
                 Guid = item.Element(dwsyn + "contentID").Value,
                 LanguageCode = item.Element(dc + "language").Value,
@@ -100,10 +142,6 @@ namespace Invia.News.Services
             // Return created articles from parsed document.
             return articles;
         }
-
-        #endregion
-
-        #region Private helper
 
         /// <summary>
         /// Adds sentiment to the given list and returns it.
@@ -139,6 +177,12 @@ namespace Invia.News.Services
 
             // Get sentiment analytics from Azure.
             var result = await client.SentimentBatchAsync(batchInput);
+            
+            if(result.Errors.Count > 0)
+            {
+                Console.WriteLine("Error occured");
+                return articles;
+            }
 
             // Enrich atricles with found sentiment score.
             foreach (var document in result.Documents)

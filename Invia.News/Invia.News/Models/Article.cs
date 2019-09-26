@@ -43,7 +43,7 @@ namespace Invia.News.Models
         public DateTime PublishDate { get; set; }
 
         /// <summary>
-        /// Gets the happeyness score in percent of 1.
+        /// Gets the sentiment score in percent of 1.
         /// </summary>
         public double SentimentScore { get; set; }
     }

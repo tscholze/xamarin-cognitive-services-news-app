@@ -8,7 +8,7 @@ using Invia.News.ViewModels;
 namespace Invia.News.Views
 {
     [DesignTimeVisible(false)]
-    public partial class ItemsPage : ContentPage
+    public partial class ArticlesPage : ContentPage
     {
         #region Private member
 
@@ -24,13 +24,11 @@ namespace Invia.News.Views
         /// <summary>
         /// Sets up the page with a binding context.
         /// </summary>
-        public ItemsPage()
+        public ArticlesPage(ArticlesViewModel viewModel)
         {
             InitializeComponent();
 
-            BindingContext = viewModel = new ArticlesViewModel();
-
-            Title = "Happy";
+            BindingContext = this.viewModel = viewModel;
         }
 
         #endregion

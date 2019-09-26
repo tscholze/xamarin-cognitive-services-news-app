@@ -40,15 +40,6 @@
     <!--
         Tab Bar
     -->
-    <TabBar>
-        <Tab Title="Happy"
-             Icon="tab_feed.png">
-            <ShellContent ContentTemplate="{DataTemplate local:ItemsPage}" />
-        </Tab>
-        <Tab Title="Unhappy"
-             Icon="tab_about.png">
-            <ShellContent ContentTemplate="{DataTemplate local:AboutPage}" />
-        </Tab>
-    </TabBar>
+    <TabBar x:Name="TabBar" />
 
 </Shell>
