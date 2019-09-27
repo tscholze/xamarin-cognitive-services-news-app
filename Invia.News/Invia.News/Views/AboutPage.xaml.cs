@@ -42,23 +42,25 @@ namespace Invia.News.Views
               </head>
               <body>
                   <p>
-                      <strong>What is it?</strong>
+                      <strong>What is it?</strong><br />
                       <i>Invia.News</i> is an Xamarin app that uses the English feed of the great <a href='http://www.dw.com/en/top-stories/s-9097'>Deutsche Welle</a> news feed. 
                       It enriches the feed articles with a happiness score provided by <a href='https://www.microsoft.com/cognitive-services/en-us/apis'>Microsoft Cognitive Services</a>.
                       That means, that the user is able to choose wether the user want to read happy or unhappy articles. False positive articles are possbile.
                   </p>
      
                   <p>
-                      <strong>Why?</strong>
+                      <strong>Why?</strong><br />
                       This app is targeted to work as a play ground for the <a href='https://www.microsoft.com/cognitive-services/en-us/apis'>Microsoft Cognitive</a> services. 
                       There is no commercial purpose behind this usecase.
                   </p>
 
                   <p>
-                     <strong>Links!</strong>
+                     <strong>Follow-up inks</strong>
                       <ul>
                           <li>App's source code on <a href='https://github.com/tscholze/Invia.News'>Github</a></li>
                           <li>Microsoft <a href='https://www.microsoft.com/cognitive-services/en-us/apis'>Cognitive Services</a> API documentation</li>
+                          <li><a href='https://dotnet.microsoft.com/apps/xamarin'>Xamarin</a> Homepage</li>
+                          <li><a href='https://materialdesignicons.com'>materialdesignicons.com</a> as source for all of the icons</li>
                       </ul>
                   </p>
               </body>

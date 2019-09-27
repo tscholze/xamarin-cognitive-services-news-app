@@ -12,6 +12,7 @@
     </ContentPage.ToolbarItems>
 
     <ContentPage.Content>
-         <WebView x:Name="WebView" />
+         <WebView x:Name="WebView"
+                  Margin="20"/>
     </ContentPage.Content>
 </ContentPage>
