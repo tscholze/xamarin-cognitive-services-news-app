@@ -7,6 +7,9 @@ using Xamarin.Forms;
 
 namespace Invia.News.ViewModels
 {
+    /// <summary>
+    /// View model behind an ArticlesPage.
+    /// </summary>
     public class ArticlesViewModel : BaseViewModel
     {
         #region Public constants 
@@ -30,6 +33,7 @@ namespace Invia.News.ViewModels
                 isRefreshing = value;
                 OnPropertyChanged();
             }
+
             get
             {
                 return isRefreshing;
@@ -110,7 +114,7 @@ namespace Invia.News.ViewModels
         /// <summary>
         /// Backing field for IsRefreshing.
         /// </summary>
-        private bool isRefreshing = false;
+        private bool isRefreshing;
 
         /// <summary>
         /// Determines if happy or sad articles will be shown.
@@ -131,11 +135,11 @@ namespace Invia.News.ViewModels
             // Setup members
             this.showHappy = showHappy;
             Title = showHappy ? "Happy News" : "Sad News";
-            IsRefreshing = false;
 
             // Setup commands
             LoadArticlesCommand = new Command(async () => await LoadArticlesAsync(false));
             RefreshArticlesCommand = new Command(async () => await LoadArticlesAsync(true));
+
         }
 
         #endregion

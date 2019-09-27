@@ -1,35 +1,79 @@
-﻿using Invia.News.Models;
-using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Linq;
+using Invia.News.Models;
 
 namespace Invia.News.ViewModels
 {
-    public class ArticleViewModel
+    /// <summary>
+    /// View model behind an ArticlePage.
+    /// </summary>
+    public class ArticleViewModel: BaseViewModel
     {
-        #region Private member
-
-        readonly Article articel;
-
-        #endregion
-
         #region Public members
 
-        public string UrlSource
+        /// <summary>
+        /// Html source (link) of the atricle.
+        /// </summary>
+        public string HtmlSource
         {
+            set
+            {
+                htmlSource = value;
+                OnPropertyChanged();
+            }
+
             get
             {
-                return articel.Link;
+                return htmlSource;
             }
         }
 
         #endregion
 
+        #region Private member
+
+        /// <summary>
+        /// Backing field for `HtmlSource`.
+        /// </summary>
+        private string htmlSource;
+
+        #endregion
+
         #region Init
 
-        public ArticleViewModel(Article articel)
+        /// <summary>
+        /// Init.
+        ///
+        /// Will set the html source.
+        /// </summary>
+        /// <param name="article"></param>
+        public ArticleViewModel(Article article)
         {
-            this.articel = articel;
+            HtmlSource = article.Link;
+        }
+
+        #endregion
+
+        #region Public helper
+
+        public bool IsNearlySameUrl(string url)
+        {
+            // 1. Check if url is exactly the same.
+            if(HtmlSource == url)
+            {
+                return true;
+            }
+
+            // 2. Check if last parameter equals the source
+            // This could happen due to internal redirects to mobile
+            // pages (dw.com -> m.dw.com).
+            string[] seperator =  {".com"};
+            var lastSegmentsSource = HtmlSource.Split(seperator, System.StringSplitOptions.RemoveEmptyEntries).Last();
+            if (url.EndsWith(lastSegmentsSource, System.StringComparison.Ordinal))
+            {
+                return true;
+            }
+
+            return false;
         }
 
         #endregion

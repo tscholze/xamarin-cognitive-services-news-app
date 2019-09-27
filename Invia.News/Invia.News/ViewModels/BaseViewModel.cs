@@ -1,11 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
+﻿using System.ComponentModel;
 using System.Runtime.CompilerServices;
-using System.Text;
 
 namespace Invia.News.ViewModels
 {
+    /// <summary>
+    /// Base of other view model.
+    /// Provides a heper to trigger property changed events.
+    ///
+    /// This class is inspired by others.
+    /// </summary>
     public class BaseViewModel : INotifyPropertyChanged
     {
         #region INotifyPropertyChanged

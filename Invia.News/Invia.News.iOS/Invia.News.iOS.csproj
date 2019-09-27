@@ -116,13 +116,13 @@
     <BundleResource Include="Resources\tab_about.png" />
     <BundleResource Include="Resources\tab_about%402x.png" />
     <BundleResource Include="Resources\tab_about%403x.png" />
-    <BundleResource Include="Resources\tab_feed.png" />
-    <BundleResource Include="Resources\tab_feed%402x.png" />
-    <BundleResource Include="Resources\tab_feed%403x.png" />
-    <BundleResource Include="Resources\xamarin_logo.png" />
-    <BundleResource Include="Resources\xamarin_logo%402x.png" />
-    <BundleResource Include="Resources\xamarin_logo%403x.png" />
     <InterfaceDefinition Include="Resources\LaunchScreen.storyboard" />
+    <BundleResource Include="Resources\tab_happ%402x.png" />
+    <BundleResource Include="Resources\tab_happy.png" />
+    <BundleResource Include="Resources\tab_happy%403x.png" />
+    <BundleResource Include="Resources\tab_sad.png" />
+    <BundleResource Include="Resources\tab_sad%402x.png" />
+    <BundleResource Include="Resources\tab_sad%403x.png" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -139,7 +139,7 @@
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <ItemGroup>
     <ProjectReference Include="..\Invia.News\Invia.News.csproj">
-      <Project>{6AFBD8D0-760E-4CCF-AFAD-BAF84EE8C76F}</Project>
+      <Project>{5B01B79E-9B0C-4C8B-91CB-8A649E81B668}</Project>
       <Name>Invia.News</Name>
     </ProjectReference>
   </ItemGroup>

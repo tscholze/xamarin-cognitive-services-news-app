@@ -6,6 +6,7 @@
              mc:Ignorable="d"
              x:Class="Invia.News.Views.ArticlePage">
     <ContentPage.Content>
-        <Label Text="Foo" />
+        <WebView x:Name="WebView"
+                 Source="{Binding HtmlSource}" />
     </ContentPage.Content>
 </ContentPage>

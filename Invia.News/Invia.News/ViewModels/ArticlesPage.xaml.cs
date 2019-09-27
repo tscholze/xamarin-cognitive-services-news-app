@@ -7,6 +7,9 @@ using Invia.News.ViewModels;
 
 namespace Invia.News.Views
 {
+    /// <summary>
+    /// Will present a list of happy or sad atricles.
+    /// </summary>
     [DesignTimeVisible(false)]
     public partial class ArticlesPage : ContentPage
     {
@@ -30,10 +33,40 @@ namespace Invia.News.Views
 
             // Setup binding context.
             BindingContext = this.viewModel = viewModel;
-
-            // Setup messaging center.
-            MessagingCenter.Subscribe<ArticlesViewModel, string>(this, ArticlesViewModel.NOTIFICATION_ALERT_REQUESTED, OnAlertRequested);
         }
+
+        #endregion
+
+        #region Life cycle
+
+        /// <summary>
+        /// Raised if the page appears.
+        /// </summary>
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+
+            // Subscribe to view model notifications.
+            MessagingCenter.Subscribe<ArticlesViewModel, string>(this, ArticlesViewModel.NOTIFICATION_ALERT_REQUESTED, OnAlertRequested);
+
+            // Load articles if required.
+            if (!viewModel.HasArticles)
+            {
+                viewModel.LoadArticlesCommand.Execute(null);
+            }
+        }
+
+        /// <summary>
+        /// Raised if the page disappears.
+        /// </summary>
+        protected override void OnDisappearing()
+        {
+            // Unsubscribe from view model notifications.
+            MessagingCenter.Unsubscribe<ArticlesViewModel>(this, ArticlesViewModel.NOTIFICATION_ALERT_REQUESTED);
+
+            base.OnDisappearing();
+        }
+
 
         #endregion
 
@@ -49,10 +82,15 @@ namespace Invia.News.Views
             DisplayAlert("Information", message, "OK");
         }
 
-        async void OnItemSelected(object sender, SelectedItemChangedEventArgs args)
+        /// <summary>
+        /// Raised if user selects an item in list view.
+        /// </summary>
+        /// <param name="sender">Requesting list view</param>
+        /// <param name="e">Event args.</param>
+        async void OnItemTapped(object sender, ItemTappedEventArgs e)
         {
             // Get the underlying article.
-            var article = args.SelectedItem as Article;
+            var article = e.Item as Article;
 
             // Navigate to detail page.
             await Navigation.PushAsync(new ArticlePage(new ArticleViewModel(article)));
@@ -61,24 +99,15 @@ namespace Invia.News.Views
             ArticlesListView.SelectedItem = null;
         }
 
+        /// <summary>
+        /// Raised if user taps on the about icon.
+        /// </summary>
+        /// <param name="sender">Requesting button.</param>
+        /// <param name="e">Event args.</param>
         async void AddItem_Clicked(object sender, EventArgs e)
         {
             // Open a modal. 
             await Navigation.PushModalAsync(new NavigationPage(new AboutPage()));
-        }
-
-        #endregion
-
-        #region Life cycle
-        protected override void OnAppearing()
-        {
-            base.OnAppearing();
-
-            // Load articles if required.
-            if (!viewModel.HasArticles)
-            {
-                viewModel.LoadArticlesCommand.Execute(null);
-            }
         }
 
         #endregion

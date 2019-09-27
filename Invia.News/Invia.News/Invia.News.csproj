@@ -15,11 +15,8 @@
     <PackageReference Include="Microsoft.Azure.CognitiveServices.Language.TextAnalytics" Version="4.0.0" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Update="Views\ArticlesPage.xaml.cs">
-      <DependentUpon>ArticlesPage.xaml</DependentUpon>
-    </Compile>
+    <Compile Remove="ViewModels\AboutViewModel.cs" />
   </ItemGroup>
-
   <ItemGroup>
     <EmbeddedResource Update="Views\AboutPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
@@ -30,5 +27,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Uitls\Converters\" />
+    <Folder Include="Resources\" />
+    <Folder Include="Resources\Images\" />
   </ItemGroup>
 </Project>

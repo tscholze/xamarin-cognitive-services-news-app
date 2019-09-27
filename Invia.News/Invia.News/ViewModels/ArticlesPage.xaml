@@ -18,16 +18,17 @@
     <!-- List View of all atricles -->
     <ListView
             x:Name="ArticlesListView"
-            ItemSelected="OnItemSelected"
+            ItemTapped="OnItemTapped"
             ItemsSource="{Binding Articles}"
-            RefreshCommand="{Binding RefreshCommand}"
+            RefreshCommand="{Binding RefreshArticlesCommand}"
             IsRefreshing="{Binding IsRefreshing}"
             SeparatorVisibility="Default"
             SeparatorColor="DarkOrange"
             HasUnevenRows="true"
             SelectionMode="None"
             IsPullToRefreshEnabled="True"
-            ios:ListView.SeparatorStyle="FullWidth">
+            ios:ListView.SeparatorStyle="FullWidth"
+            Footer="">
         <ListView.ItemTemplate>
             <DataTemplate>
                 <ViewCell>
