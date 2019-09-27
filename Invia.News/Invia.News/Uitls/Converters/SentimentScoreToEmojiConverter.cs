@@ -4,8 +4,20 @@ using Xamarin.Forms;
 
 namespace Invia.News.Uitls.Converters
 {
+    /// <summary>
+    /// Converts double Sentiment Scores to Emoji string values.
+    /// No Convert-Back supported.
+    /// </summary>
     public class SentimentScoreToEmojiConverter : IValueConverter
     {
+        /// <summary>
+        /// Converts double value to string value.
+        /// </summary>
+        /// <param name="value">Sentiment value as double</param>
+        /// <param name="targetType">Target type</param>
+        /// <param name="parameter">Parameter (ignored)</param>
+        /// <param name="culture">Culture (ignored)</param>
+        /// <returns>Emoji string representation of the score value./returns>
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             // Cast value to useable score.
