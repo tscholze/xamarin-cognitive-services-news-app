@@ -198,3 +198,42 @@ namespace Invia.News.Services
         #endregion
     }
 }
+
+
+/**
+ *   var list = new List<Article> {
+                new Article
+                {
+                    Title = "All positive Articles are faked, there were new good news on this day.",
+                    SentimentScore = 0.76
+                },
+           new Article {
+                Title = "Pandas are no longer endangered! A great day.",
+                SentimentScore = 0.98
+            },
+            new Article {
+                Title = "Community work reduces heart-diseases by 50%",
+                SentimentScore = 0.81
+            },
+            new Article{
+               Title = "Another happy news. Yeah! Achievment unlocked",
+               SentimentScore = 0.79
+            },
+                            new Article
+                {
+                    Title = "All positive Articles are faked, there were new good news on this day.",
+                    SentimentScore = 0.76
+                },
+           new Article {
+                Title = "Pandas are no longer endangered! A great day.",
+                SentimentScore = 0.98
+            },
+            new Article {
+                Title = "Community work reduces heart-diseases by 50%",
+                SentimentScore = 0.81
+            },
+            new Article{
+               Title = "Another happy news. Yeah! Achievment unlocked",
+               SentimentScore = 0.79
+            } };
+*/

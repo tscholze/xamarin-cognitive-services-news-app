@@ -19,12 +19,10 @@
 
 ## How it looks
 
-![Unhappy iOS](docs/unhappy-ios-shrinked.png)
-
-![About iOS](docs/unhappy-ios-shrinked.png)
+![Happy iOS](_docs/happy-ios-shrinked.png) ![Unhappy iOS](_docs/unhappy-ios-shrinked.png) ![About iOS](_docs/about-ios-shrinked.png)
 
 ## Keep in mind
-This is a proof-of-concept app that's purely build for having fun! All features have room for improvements or could show wrong results.
+This is a proof-of-concept app that's purely build for having fun! All features have room for improvements or could show **very** wrong results.
 
 ## Contributing
 Feel free to improve the quality of the code. It would be great to learn more from experienced C#, Xamarin and Azure developers.
