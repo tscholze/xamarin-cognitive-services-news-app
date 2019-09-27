@@ -14,7 +14,7 @@
 - It splits the article in happy and sad.
 
 ## Usage
-1. Copy and paste the Text Analytics API service key to the `ApiKey` property in the `ArticleService.cs` file
+1. Copy and paste the Text Analytics API service key and endpoint to the constantsn `ANALYTICS_SUBSCRIPTION_KEY` and `ANALYTICS_ENDPOINT` in the `ArticleService.cs` file
 1. Run the Android or iOS project
 
 ## How it looks
