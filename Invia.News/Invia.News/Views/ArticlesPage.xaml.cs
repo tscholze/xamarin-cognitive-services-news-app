@@ -62,7 +62,7 @@ namespace Invia.News.Views
         protected override void OnDisappearing()
         {
             // Unsubscribe from view model notifications.
-            MessagingCenter.Unsubscribe<ArticlesViewModel>(this, ArticlesViewModel.NOTIFICATION_ALERT_REQUESTED);
+            MessagingCenter.Unsubscribe<ArticlesViewModel, string>(this, ArticlesViewModel.NOTIFICATION_ALERT_REQUESTED);
 
             base.OnDisappearing();
         }

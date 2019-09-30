@@ -180,7 +180,7 @@ namespace Invia.News.Services
             // If any error occures, return the non enriched article list.
             if(result.Errors.Count > 0)
             {
-                Console.WriteLine("Error occured");
+                Console.WriteLine("An error occured");
                 return articles;
             }
 
