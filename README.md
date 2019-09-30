@@ -1,6 +1,6 @@
 # Invia.News
 
-> This is a simple use case and play-around Xamarin.Forms app to use the [Microsoft Cogntive Service](https://www.microsoft.com/cognitive-services/en-us/apis) Text Analytics API. It parses the English version of the [Deutsche Welle](http://www.dw.com/en/top-stories/s-9097) news and calculates the individual happiness (sentiment) of each article.
+> This is a simple use case and play-around Xamarin.Forms Android and iOS app to use the [Microsoft Cogntive Service](https://www.microsoft.com/cognitive-services/en-us/apis) Text Analytics API. It parses the English version of the [Deutsche Welle](http://www.dw.com/en/top-stories/s-9097) news and calculates the individual happiness (sentiment) of each article.
 
 ## Prerequirements
 - Windows 10 / macOS 
