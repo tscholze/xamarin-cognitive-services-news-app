@@ -25,6 +25,7 @@
 This is a proof-of-concept app that's purely build for having fun! All features have room for improvements or could show **very** wrong results.
 
 ## Publications
+- Personal Blog: [[Xamarin & Azure] Wir bauen uns glückliche Nachrichten](https://tscholze.uber.space/2019/09/28/xamarin-azure-wir-bauen-uns-glueckliche-nachrichten/)
 - Dr. Windows: [Wir bauen uns glückliche Nachrichten mit Xamarin und Azure](https://www.drwindows.de/news/wir-bauen-uns-glueckliche-nachrichten-mit-xamarin-und-azure)
 
 ## Contributing
