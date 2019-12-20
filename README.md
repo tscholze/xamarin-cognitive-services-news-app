@@ -24,6 +24,9 @@
 ## Keep in mind
 This is a proof-of-concept app that's purely build for having fun! All features have room for improvements or could show **very** wrong results.
 
+## Publications
+- Dr. Windows: [Wir bauen uns glückliche Nachrichten mit Xamarin und Azure](https://www.drwindows.de/news/wir-bauen-uns-glueckliche-nachrichten-mit-xamarin-und-azure)
+
 ## Contributing
 Feel free to improve the quality of the code. It would be great to learn more from experienced C#, Xamarin and Azure developers.
 
